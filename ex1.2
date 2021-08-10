@@ -1,0 +1,27 @@
+Select INSTRUCTOR_Name, Salary + Commission as total_comp
+From Instructor
+Where Salary + Commission  IS NOT null;
+
+Select INSTRUCTOR_Name, Salary + Commission as total_comp
+From Instructor
+Where Salary + Commission  < 4000;
+
+Select INSTRUCTOR_NAME, 1.1*Salary as total_comp
+From Instructor
+Where 1.1*Salary IS NOT NULL;
+
+Select INSTRUCTOR_NAME, 1.1*Salary as total_comp
+From Instructor
+Where 1.1* Salary < 4000;
+
+Select b.instructor_id, b.instructor_name, b.mentor_id
+From instructor a 
+INNER JOIN instructor b
+ON a.instructor_id=b.mentor_id
+Where b.mentor_id = 700;
+
+Select b.instructor_id, b.instructor_name, b.mentor_id
+From instructor a
+INNER JOIN instructor  b
+ON a.instructor_id=b.mentor_id
+WHERE b.mentor_id <> 700;
