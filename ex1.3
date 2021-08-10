@@ -1,0 +1,14 @@
+Select * 
+From course
+Where course_id > 300;
+
+Select course_id
+From course
+Where course_id > 300;
+
+
+CREATE INDEX instructor_salary_index ON instructor(salary);
+
+Select instructor_name, salary*12 yearsal
+From instructor
+Where salary > 60000/12
