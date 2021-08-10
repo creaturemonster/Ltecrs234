@@ -1,0 +1,21 @@
+Select INSTRUCTOR_NAME, Salary*12 
+From Instructor
+Where Salary * 12 > 60000;
+
+Select c.course_id, o.start_date
+From Course c
+INNER JOIN OFFERING o
+ON  c.course_ID=o.course_ID
+
+Select s.student_id, s.student_fname, s.student_lname, c.company_name
+From Student s
+INNER JOIN Company c
+ON s.company_id = c.company_id
+
+
+Select s.student_id, s.student_fname, s.student_lname, c.company_name
+From Student s
+INNER JOIN Company c
+ON s.company_id = c.company_id
+Where s.gender='F';
+
