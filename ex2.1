@@ -1,0 +1,24 @@
+Select MIN(Salary), AVG(Salary), MAX(Salary)
+From Instructor;
+
+Select SUM(Commission), AVG(Commission)
+From Instructor;
+
+Select AVG(EVALUATION)
+From Attendance;
+
+Select a.offering_id, AVG(a.Evaluation)
+From Offering o
+INNER JOIN Attendance a
+ON o.offering_id=a.offering_id
+Group By a.offering_id, a.Evaluation;
+
+SELECT i.instructor_id
+      ,i.instructor_name
+      ,AVG(a.evaluation)
+FROM   instructor i
+      ,offering o
+      ,attendance a
+WHERE  o.offering_id = a.offering_id
+GROUP  BY i.instructor_id, i.instructor_name
+ORDER  BY i.instructor_id;
