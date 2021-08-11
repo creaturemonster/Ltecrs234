@@ -1,0 +1,19 @@
+Select offering_id, start_date, start_date + c.duration
+From Offering o
+JOIN course c
+ON o.course_id=c.course_id
+Order By o.offering_id;
+
+
+Select  o.offering_id, o.start_date,  Last_Day(ADD_MONTHS(o.start_date, -1))
+From offering o;
+
+Select SUBSTR(Student_FNAME,1,1)|| '. ' || Student_LNAME
+From Student;
+
+Select LPAD(instructor_name, 15)
+From instructor;
+
+Select Student_fname || ' ' || Student_lname, Date_of_Birth, TRUNC(MONTHS_BETWEEN(SYSDATE99, Date_of_Birth)/12) age
+From Student
+Order By Date_of_Birth
