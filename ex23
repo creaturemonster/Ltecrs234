@@ -1,0 +1,34 @@
+Select course_id, count(*)
+From offering 
+Group by course_id
+Having count(*) >= 2;
+
+Select AVG(Evaluation) 
+From Attendance
+Group By offering_id
+Having count(*) = 1;
+
+Select AVG(Evaluation) 
+From Attendance
+Group By offering_id
+Having offering_id IS NOT  NULL and offering_id=1001;
+
+
+Select AVG(Evaluation) 
+From Attendance
+Group By offering_id
+Having offering_id IS NOT  NULL and offering_id=9999;
+
+Select i.instructor_id, i.instructor_name, Avg(a.evaluation)
+From instructor i
+JOIN offering o
+ON i.instructor_id=o.instructor_id
+JOIN attendance a 
+ON o.offering_id=a.offering_id
+Group BY i.instructor_id, i.instructor_name
+Having AVG(a.evaluation) > 3.5
+Order By AVG(a.evaluation) DESC;
+
+Select MAX(count(*))
+From Attendance
+Group By offering_id;
