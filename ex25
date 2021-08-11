@@ -1,0 +1,16 @@
+Select CASE Gender WHEN  'F' Then 'Ms. ' WHEN 'M' THEN 'Mr. ' END || Student_fname || ' ' || Student_lname
+From Student;
+
+Select DECODE(gender, 'F', 'Ms. ', 'M' , 'Mr. ') || Student_fname || ' ' || Student_lname
+From Student;
+
+Select course_id, title, CASE WHEN duration=5 Then 'Week'  ELSE TO_CHAR(duration) || ' Day'  || CASE WHEN duration > 1 THEN 's'END END duration
+From course;
+
+Select instructor_name,  CASE  WHEN salary >= 4000 THEN 'A' WHEN salary >= 2500 THEN 'B' ELSE 'C' END category, salary
+From instructor
+Order By category, salary DESC;
+
+Select instructor_name, Decode(salary, Greatest(salary, 4000), 'A', Greatest(salary,2500), 'B', 'C') category, salary
+From instructor
+Order By category, salary DESC;
