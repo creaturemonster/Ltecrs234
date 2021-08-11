@@ -1,0 +1,16 @@
+Select o.course_id, a.offering_id, Count(*) students,  SUM(a.amount_paid)
+From Course c
+JOIN Offering o
+ON c.course_id=o.course_id
+JOIN Attendance a
+ON o.offering_id=a.offering_id
+JOIN Student s
+ON s.student_id=a.student_id
+Group By ROLLUP(o.course_id, a.offering_id)
+Order By course_id, a.offering_id
+
+Select o.course_id, o.instructor_id, Avg(a.evaluation)
+From  offering o 
+JOIN attendance a
+ON o.offering_id=a.offering_id
+Group By ROLLUP(o.course_id, o.instructor_id);
