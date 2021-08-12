@@ -1,0 +1,23 @@
+Select c.course_id, c.title, a.instructor_id
+From course c
+LEFT OUTER JOIN authorization a
+ON c.course_id=a.course_id
+ORDER BY c.course_id, a.instructor_name;
+
+Select c.course_id, c.title, a.instructor_id
+From course c
+LEFT OUTER JOIN authorization a
+ON c.course_id=a.course_id
+LEFT OUTER JOIN instructor i
+ON a.instructor_id=i.instructor_id
+ORDER BY c.course_id, i.instructor_name;
+
+Select o.offering_id, o.start_date, o.course_id, c.title, s.location, i.instructor_name
+From offering o
+JOIN course c
+ON o.course_id = c.course_id
+LEFT OUTER JOIN instructor i
+ON o.instructor_id=i.instructor_id
+JOIN site s
+ON o.site_id=s.site_id;
+
