@@ -1,0 +1,27 @@
+Select c.course_id, title
+from course c
+Where c.course_id IN (Select course_id 
+                      From offering o
+                      Where o.start_date > sysdate99);
+                      
+                      
+Select c.course_id, c.title
+from course c
+where c.course_id NOT IN (Select o.course_id 
+From offering o
+Where o.start_date  > sysdate99);
+
+Select c.course_id, title
+from course c
+Where c.course_id IN (select o.course_id 
+From offering o
+WHere o.site_id IN (select s.site_id From site s Where s.location='LONDON'));
+
+Select one.instructor_name, one.salary 
+From instructor one
+Where one.salary > (Select AVG(two.salary) From instructor two)
+
+Select o.offering_id, count(*)
+From attendance o
+Group By o.offering_id
+Having count(*) = (select Max(count(*)) From attendance o2 Group By offering_id);
