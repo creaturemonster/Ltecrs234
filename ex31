@@ -1,0 +1,63 @@
+Select o.offering_id, o.start_date, o.course_id, c.title
+From offering o 
+Join course c
+ON o.course_id=c.course_id
+ORDER BY offering_id;
+
+Select o.offering_id, o.start_date, o.course_id, c.title, s.location
+From offering o 
+Join course c
+ON o.course_id=c.course_id
+JOIN site s
+ON s.site_id=o.site_id
+ORDER BY offering_id;
+
+Select o.offering_id, o.start_date, o.course_id, c.title, s.location, i.instructor_name
+From offering o 
+Join course c
+ON o.course_id=c.course_id
+JOIN site s
+ON s.site_id=o.site_id
+JOIN instructor i
+ON i.instructor_id=o.instructor_id
+ORDER BY offering_id;
+
+Select c.course_id, c.title, i.instructor_name
+From course c
+JOIN offering o
+ON c.course_id=o.course_id
+JOIN instructor i
+ON i.instructor_id=o.instructor_id
+ORDER BY c.course_id, i.instructor_name
+
+Select i.instructor_id, i.instructor_name, s.student_id, s.student_lname || ', ' || s.student_fname, o.start_date
+From instructor i
+JOIN offering o
+ON i.instructor_id=o.instructor_id
+JOIN Attendance a 
+ON a.offering_id=o.offering_id
+JOIN Student s
+ON s.student_id=a.student_id
+ORDER BY  i.instructor_id, s.student_id;
+
+Select i.instructor_id, i.instructor_name, s.student_id, s.student_lname || ', ' || s.student_fname, o.start_date
+From instructor i
+JOIN offering o
+ON i.instructor_id=o.instructor_id
+JOIN Attendance a 
+ON a.offering_id=o.offering_id
+JOIN Student s
+ON s.student_id=a.student_id
+Where TRUNC(o.start_date) < TRUNC(SYSDATE99)
+ORDER BY  i.instructor_id, s.student_id;
+
+Select DISTINCT i.instructor_id, i.instructor_name, s.student_id, s.student_lname || ', ' || s.student_fname
+From instructor i
+JOIN offering o
+ON i.instructor_id=o.instructor_id
+JOIN Attendance a 
+ON a.offering_id=o.offering_id
+JOIN Student s
+ON s.student_id=a.student_id
+Where TRUNC(o.start_date) < TRUNC(SYSDATE99)
+ORDER BY  i.instructor_id, s.student_id;
