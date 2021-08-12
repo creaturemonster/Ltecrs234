@@ -1,0 +1,31 @@
+Select c.course_id, c.title
+from course c
+Where EXISTS (Select 'X'
+                      From offering o
+                      Where o.course_id=c.course_id 
+                      and TRUNC(o.start_date) > TRUNC(sysdate99));
+                      
+Select c.course_id, c.title
+from course c
+where NOT EXISTS (Select 'X'
+From offering o
+Where o.course_id= c.course_id 
+and TRUNC(o.start_date)  > TRUNC(sysdate99));
+
+Select *
+From course c1
+WHERE c1.duration <  (Select Avg(c2.duration)  From course c2 where c2.subject_id=c1.subject_id)
+Order By c1.subject_id, c1.duration, c1.course_id;
+
+Select i.instructor_id, i.instructor_name, i.salary, i.mentor_id
+From instructor i
+Where i.salary > (Select i2.salary From instructor i2 Where i2.instructor_id=i.mentor_id);
+
+
+Select i.instructor_id, i.instructor_name
+From instructor i
+Where NOT EXISTS (Select o.instructor_id From offering o JOIN site s ON o.site_id = s.site_id Where  i.instructor_id=o.instructor_id and s.location='LONDON');
+
+Select i.instructor_id, i.instructor_name
+From instructor i
+Where NOT EXISTS (Select o.instructor_id From offering o JOIN site s ON o.site_id = s.site_id Where  i.instructor_id=o.instructor_id and s.location='STOCKHOLM');
