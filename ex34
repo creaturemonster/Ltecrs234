@@ -1,0 +1,17 @@
+Select LPAD(' ', 2 * (LEVEL- 1)) || instructor_name name, salary
+From instructor
+CONNECT BY PRIOR instructor_id=mentor_id
+START WITH mentor_id IS NULL
+ORDER BY salary DESC;
+
+Select LPAD(' ', 2 * (LEVEL- 1)) || instructor_name name, salary
+From instructor
+CONNECT BY PRIOR instructor_id=mentor_id
+START WITH instructor_name='STEEL'
+ORDER SIBLINGS BY instructor_name;
+
+Select LPAD(' ', 2 * (LEVEL- 1)) || instructor_name name
+From instructor
+CONNECT BY instructor_id=PRIOR mentor_id
+START WITH instructor_name='LODGE'
+ORDER SIBLINGS BY instructor_name;
