@@ -1,14 +1,18 @@
+#Write and test a query to list the name and the total compensation (salary + commission)  of all of the instructors. Unknown commission should be treated as zero.
 Select INSTRUCTOR_Name, Salary + Commission as total_comp
 From Instructor
 Where Salary + Commission  IS NOT null;
 
+#Modify the query in Step 1 to show only those instructors with total compensation less than $4,000
 Select INSTRUCTOR_Name, Salary + Commission as total_comp
 From Instructor
 Where Salary + Commission  < 4000;
 
+#Repeat steps 1 and 2 using a different rule for calculating commission for instructors with unspecified commission. Commission should be 10% of salary
 Select INSTRUCTOR_NAME, 1.1*Salary as total_comp
 From Instructor
 Where 1.1*Salary IS NOT NULL;
+
 
 Select INSTRUCTOR_NAME, 1.1*Salary as total_comp
 From Instructor
