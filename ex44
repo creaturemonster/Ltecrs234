@@ -1,0 +1,24 @@
+Select a.title, 
+       a.cost, 
+       (Select Round(Avg(cost)) From course) avgcost,
+       cost-(Select Round(Avg(a.cost)) From course a) diff
+From course a 
+Order By a.title;
+
+Select c.title, 
+       c.cost, 
+       c.subject_id,
+       (Select Round(Avg(a.cost)) From course a Where a.subject_id=c.subject_id) avgcost,
+       c.cost-(Select Round(Avg(a.cost)) From course a Where c.subject_id=a.subject_id) diff
+From course c 
+Order By c.subject_id, c.title;
+
+Select *
+From (Select (Select Count(*) + 1
+From instructor i2 
+Where i2.salary > i1.salary) rank, 
+salary, 
+instructor_name
+From instructor i1
+ORDER BY rank)
+Where rank < 6;
