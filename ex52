@@ -1,0 +1,19 @@
+Select course_id, title, subject_id, cost, 
+RANK() OVER(PARTITION BY course_id ORDER BY subject_id DESC) rank
+FROM course
+ORDER BY course_id, rank;
+
+Select c.subject_id, 
+c.course_id, 
+c.title, 
+SUM(a.amount_paid) revenue, 
+RANK() OVER(PARTITION BY c.subject_id ORDER BY SUM(a.amount_paid)) rank
+From attendance a 
+JOIN offering o
+ON a.offering_id=o.offering_id
+JOIN course c
+ON o.course_id=c.course_id
+GROUP BY c.subject_id, c.course_id, c.title
+ORDER BY c.subject_id, 
+revenue DESC,
+c.course_id;
