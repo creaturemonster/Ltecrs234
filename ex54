@@ -1,0 +1,14 @@
+Select offering_id, 
+student_id, 
+amount_paid, 
+SUM(amount_paid) OVER(ORDER BY offering_id, student_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) acc_paid
+From attendance
+ORDER BY offering_id, student_id;
+
+Select offering_id, 
+student_id, 
+amount_paid, 
+SUM(amount_paid) OVER(PARTITION BY offering_id
+ORDER BY student_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) acc_paid
+From attendance
+ORDER BY offering_id, student_id;
