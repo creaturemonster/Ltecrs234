@@ -1,0 +1,20 @@
+Select Max(attendees) 
+From (Select Count(*) attendees, offering_id
+From Attendance
+Group By offering_id);
+
+
+Select c.title, c.cost, a.avgcost, c.cost - a.avgcost diff
+From course c 
+Cross JOIN (Select ROUND(Avg(cost))avgcost
+From course)a
+Order By c.title;
+
+Select c.title, c.cost, c.subject_id, a.avgcost, c.cost - a.avgcost diff
+From course c 
+Cross JOIN (Select ROUND(Avg(cost))avgcost, subject_id
+From course
+Group By subject_id)a
+Order By c.subject_id, c.title;
+ 
+ 
