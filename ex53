@@ -1,0 +1,14 @@
+Select title, 
+cost, 
+ROUND(AVG(cost) OVER())avgcost,
+cost-ROUND(AVG(cost) OVER()) diff
+From course
+ORDER BY title;
+
+Select title, 
+cost, 
+subject_id,
+ROUND(AVG(cost) OVER(PARTITION BY subject_id))avgcost,
+cost-ROUND(AVG(cost) OVER(PARTITION BY subject_id)) diff
+From course
+ORDER BY subject_id, title;
